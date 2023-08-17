@@ -12,8 +12,9 @@ import { contactsThunk } from 'redux/sliceApiThunk';
 const App = function () {
   const { contactsBook } = useSelector(myContactSelector);
   const dispatch = useDispatch();
+const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
 
-  useEffect(() => { dispatch(contactsThunk())},[dispatch])
+  useEffect(() => { dispatch(contactsThunk()) }, [dispatch])
   const addContact = props => {
     const { name, number } = props;
     if (contactsBook) {
@@ -30,7 +31,7 @@ const App = function () {
 
   const filterContact = e => {
     if (e.target.value) {
-      const filterSelector = contactsBook.filter(el =>
+      const filterSelector = contactsApi.filter(el =>
         el.name.includes(e.target.value)
       );
       dispatch(filter(filterSelector));
@@ -53,10 +54,13 @@ const App = function () {
         color: '#010101',
       }}
     >
+  
+      {isLoading&&<h2>Loading...</h2>}
       <Form addContact={addContact} />
       <Filter filterContact={filterContact} />
       {/* <ShowContactList /> */}
-      <Contact deleteContact={deleteContact} />
+      {error?error.message:<Contact deleteContact={deleteContact} />}
+    
     </div>
   );
 };

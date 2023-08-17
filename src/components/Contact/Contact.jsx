@@ -5,7 +5,7 @@ import { ContactsDiv, Button } from './Contacts.styled';
 import { myContactSelector } from 'redux/selector';
 const Contact = ({ deleteContact }) => {
   const visFilter = useSelector(myContactSelector).contactFilter[0];
-  const visContact = useSelector(myContactSelector).contactsBook;
+  const visContact = useSelector(myContactSelector).contactApi.contactsApi;
 
   let show = [];
 
