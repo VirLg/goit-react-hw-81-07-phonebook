@@ -1,5 +1,3 @@
-import Api from 'api/Api';
-
 const { createSlice } = require('@reduxjs/toolkit');
 
 const initialState = {
