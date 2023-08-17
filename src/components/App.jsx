@@ -7,9 +7,8 @@ import { add, remove } from '../redux/slice';
 import { filter } from '../redux/sliceFilter';
 import { myContactSelector } from 'redux/selector';
 import { useEffect } from 'react';
-
-import Api from 'api/Api';
 import { contactsThunk } from 'redux/sliceApiThunk';
+
 const App = function () {
   const { contactsBook } = useSelector(myContactSelector);
   const dispatch = useDispatch();
@@ -58,7 +57,6 @@ const App = function () {
       <Filter filterContact={filterContact} />
       {/* <ShowContactList /> */}
       <Contact deleteContact={deleteContact} />
-      {/* <button onClick={ ()=>{dispatch(Api())}}>test</button> */}
     </div>
   );
 };
