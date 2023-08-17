@@ -1,8 +1,6 @@
-const { createSlice } = require('@reduxjs/toolkit');
+import Api from 'api/Api';
 
-const contactsThunk = second => {
-  return async dispatch => dispatch();
-};
+const { createSlice } = require('@reduxjs/toolkit');
 
 const initialState = {
   contactsApi: [],
@@ -13,16 +11,19 @@ export const contactApiSlice = createSlice({
   name: 'contactApi',
   initialState,
   reducers: {
-    fetching: state => (state.isLoading = true),
-  },
-  fetchSuccess: (state, action) => {
-    state.isLoading = false;
-    state.contactsApi = action.payload;
-    state.error = '';
-  },
-  fetchError: (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
+    fetching: state => {
+      state.isLoading = true;
+    },
+
+    fetchSuccess: (state, action) => {
+      state.isLoading = false;
+      state.contactsApi = action.payload;
+      state.error = '';
+    },
+    fetchError: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 export const { fetching, fetchSuccess, fetchError } =
