@@ -6,9 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add, remove } from '../redux/slice';
 import { filter } from '../redux/sliceFilter';
 import { myContactSelector } from 'redux/selector';
+import { useEffect } from 'react';
 const App = function () {
   const { contactsBook } = useSelector(myContactSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => { },[])
   const addContact = props => {
     const { name, number } = props;
     if (contactsBook) {
