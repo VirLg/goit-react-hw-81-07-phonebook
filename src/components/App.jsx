@@ -7,7 +7,8 @@ import { add, remove } from '../redux/slice';
 import { filter } from '../redux/sliceFilter';
 import { myContactSelector } from 'redux/selector';
 import { useEffect } from 'react';
-import { contactsThunk } from 'redux/sliceApiThunk';
+import { contactsThunk } from 'redux/thunk';
+
 
 const App = function () {
   const { contactsBook } = useSelector(myContactSelector);
