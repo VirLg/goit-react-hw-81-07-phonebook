@@ -7,7 +7,7 @@ const handlePending = state => {
 };
 const handleFulfilled = (state, action) => {
   state.isLoading = false;
-  state.contactsApi = action.payload;
+  state.contactsApi = action.payload.data;
   state.error = '';
 };
 const handleRejected = (state, action) => {
@@ -19,10 +19,13 @@ export const contactApiSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(contactsThunk.pending, handlePending)
       .addCase(contactsThunk.fulfilled, handleFulfilled)
-      .addCase(contactsThunk.rejected, handleRejected)
-      .addMatcher();
+      .addMatcher(action => {
+        action.type.endsWith('/pending');
+      }, handlePending)
+      .addMatcher(action => {
+        action.type.endsWith('/rejected');
+      }, handleRejected);
   },
 });
 

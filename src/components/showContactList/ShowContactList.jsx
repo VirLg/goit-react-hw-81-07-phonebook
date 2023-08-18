@@ -12,24 +12,25 @@ const ShowContactList = filterContact => {
   } else {
     show = visFilter;
   }
-
-  return show.map(({ name, number, id }) => {
-    return (
-      <div key={id}>
-        <div
-          style={{
-            display: 'flex',
-            height: '30px',
-            alignSelf: 'baseLine',
-          }}
-        >
-          <h2>{name}</h2>
-          <p>{number}</p>
-          <button type="button">Delete</button>
-        </div>
-      </div>
-    );
-  });
+console.log('show', show)
+  return 
 };
 
 export default ShowContactList;
+// show.map(({ name, number, id }) => {
+//     return (
+//       <div key={id}>
+//         <div
+//           style={{
+//             display: 'flex',
+//             height: '30px',
+//             alignSelf: 'baseLine',
+//           }}
+//         >
+//           <h2>{name}</h2>
+//           <p>{number}</p>
+//           <button type="button">Delete</button>
+//         </div>
+//       </div>
+//     );
+//   });
