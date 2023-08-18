@@ -14,7 +14,7 @@ const Contact = ({ deleteContact }) => {
   } else {
     show = visFilter;
   }
-  console.log('show', visContact)
+ 
   return show.map(({ number, name, id }) => {
     return (
       <ContactsDiv key={id}>
