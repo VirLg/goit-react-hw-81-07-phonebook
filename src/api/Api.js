@@ -13,6 +13,13 @@ export default Api;
 export const ApiDelete = id => {
   const data = axios.delete(`contacts/${id}`);
   if (!data) return new Error('some');
-  console.log('data', data);
+
+  return data;
+};
+
+export const ApiAdd = ({ id }) => {
+  const data = axios.post(`contacts`);
+  if (!data) return new Error('some');
+
   return data;
 };

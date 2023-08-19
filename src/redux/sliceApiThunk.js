@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { contactsDeleteThunk, contactsThunk } from './thunk';
+import {
+  contactsAddThunk,
+  contactsDeleteThunk,
+  contactsThunk,
+} from './thunk';
 import { initialState } from './initialState';
 
 const handlePending = state => {
@@ -19,6 +23,12 @@ export const handleDeleteFulfielled = (state, { payload }) => {
     el => el.id !== payload.data.id
   );
 };
+
+export const handleAddFulfielled = (state, action) => {
+  state.contactsApi = [{ name: '5' }, ...state.contactsApi];
+  console.log(action);
+  // state.contactApi.contactsApi.push(action.payload);
+};
 export const contactApiSlice = createSlice({
   name: 'contactApi',
   initialState,
@@ -26,6 +36,7 @@ export const contactApiSlice = createSlice({
     builder
       .addCase(contactsThunk.fulfilled, handleFulfilled)
       .addCase(contactsDeleteThunk.fulfilled, handleDeleteFulfielled)
+      .addCase(contactsAddThunk.fulfilled, handleAddFulfielled)
       .addMatcher(action => {
         action.type.endsWith('/pending');
       }, handlePending)
