@@ -3,7 +3,7 @@ import Contact from './Contact/Contact';
 import Filter from './Filter/Filter';
 import Form from './Form/Form';
 import { useDispatch, useSelector } from 'react-redux';
-import { add, remove } from '../redux/slice';
+
 import { filter } from '../redux/sliceFilter';
 import { myContactSelector } from 'redux/selector';
 import { useEffect } from 'react';
@@ -11,24 +11,25 @@ import { contactsThunk } from 'redux/thunk';
 
 
 const App = function () {
-  const { contactsBook } = useSelector(myContactSelector);
+  const { contactApi } = useSelector(myContactSelector);
+  console.log('contactApi', contactApi)
   const dispatch = useDispatch();
 const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
 
   useEffect(() => { dispatch(contactsThunk()) }, [dispatch])
   
   const addContact = props => {
-    const { name, number } = props;
-    if (contactsBook) {
-      const check = contactsBook.find(
-        el => el.name.toLowerCase() === name.toLowerCase()
-      );
-      if (check) {
-        return alert('NoNoNo');
-      }
+    // const { name, number } = props;
+    // if (contactApi) {
+    //   const check = contactApi.find(
+    //     el => el.name.toLowerCase() === name.toLowerCase()
+    //   );
+    //   if (check) {
+    //     return alert('NoNoNo');
+    //   }
   
-      dispatch(add({ name, number, id: nanoid() }));
-    }
+      // dispatch(add({ name, number, id: nanoid() }));
+    // }
   };
 
   const filterContact = e => {
@@ -56,7 +57,7 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
     >
   
       {isLoading&&<h2>Loading...</h2>}
-      <Form addContact={addContact} />
+      <Form  />
       <Filter filterContact={filterContact} />
 
       {error?error.message:<Contact  />}
