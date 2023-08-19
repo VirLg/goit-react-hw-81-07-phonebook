@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { contactsThunk } from './thunk';
+import { contactsDeleteThunk, contactsThunk } from './thunk';
 import { initialState } from './initialState';
 
 const handlePending = state => {
@@ -14,12 +14,21 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
+export const handleDeleteFulfielled = (state, action) => {
+  state.contactId = action.payload;
+  state.contactsApi = state.contactsApi.filter(
+    el => el.id !== action.payload.data.id
+  );
+  console.log('action', action);
+  console.log(state);
+};
 export const contactApiSlice = createSlice({
   name: 'contactApi',
   initialState,
   extraReducers: builder => {
     builder
       .addCase(contactsThunk.fulfilled, handleFulfilled)
+      .addCase(contactsDeleteThunk.fulfilled, handleDeleteFulfielled)
       .addMatcher(action => {
         action.type.endsWith('/pending');
       }, handlePending)
@@ -27,9 +36,15 @@ export const contactApiSlice = createSlice({
         action.type.endsWith('/rejected');
       }, handleRejected);
   },
+  reducers: {
+    deleteCont: (state, action) => {
+      console.log('action.payload', action.payload);
+    },
+  },
 });
 
 export default contactApiSlice.reducer;
+
 // ----------------------------------------------
 // extraReducers: {
 // [contactsThunk.pending]: state => {

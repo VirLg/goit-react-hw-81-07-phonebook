@@ -9,9 +9,11 @@ const Api = () => {
 };
 
 export default Api;
-export const ApiDelete = id => {
-  const data = axios.delete(`contacts/:${id}`);
-  if (!data) return new Error('some');
 
+export const ApiDelete = id => {
+  // console.log('id', id);
+  const data = axios.delete(`contacts/${id}`);
+  if (!data) return new Error('some');
+  console.log('data', data);
   return data;
 };

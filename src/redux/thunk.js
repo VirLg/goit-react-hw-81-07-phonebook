@@ -10,6 +10,7 @@ export const contactsThunk = createAsyncThunk(
 export const contactsDeleteThunk = createAsyncThunk(
   'contactApi/deleteContact',
   id => {
+    // state.contactApi.contactsApi.filter(el => el.id !== id);
     return ApiDelete(id);
   }
 );

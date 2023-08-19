@@ -7,4 +7,5 @@ export const reducer = {
   contactsBook: contactSlice.reducer,
   contactFilter: sortSlice.reducer,
   contactApi: contactApiSlice.reducer,
+  deleteCont: contactApiSlice.reducer,
 };

@@ -41,9 +41,9 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
     }
   };
 
-  const deleteContact = id => {
-    dispatch(remove(contactsBook.filter(el => el.id !== id)));
-  };
+  // const deleteContact = id => {
+  //   dispatch(remove(contactsBook.filter(el => el.id !== id)));
+  // };
 
   return (
     <div
@@ -60,7 +60,7 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
       <Form addContact={addContact} />
       <Filter filterContact={filterContact} />
       {/* <ShowContactList /> */}
-      {error?error.message:<Contact deleteContact={deleteContact} />}
+      {error?error.message:<Contact  />}
     
     </div>
   );
