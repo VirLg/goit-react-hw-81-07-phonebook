@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ContactsDiv, Button } from './Contacts.styled';
 import { myContactSelector } from 'redux/selector';
-import { deleteCont } from 'redux/sliceApiThunk';
 import { contactsDeleteThunk } from 'redux/thunk';
 const Contact = () => {
   const dispatch = useDispatch()

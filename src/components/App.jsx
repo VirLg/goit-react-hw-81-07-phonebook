@@ -16,6 +16,7 @@ const App = function () {
 const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
 
   useEffect(() => { dispatch(contactsThunk()) }, [dispatch])
+  
   const addContact = props => {
     const { name, number } = props;
     if (contactsBook) {
@@ -25,7 +26,7 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
       if (check) {
         return alert('NoNoNo');
       }
-      // setContacts(prev => [{ name, number, id: nanoid() }, ...prev]);
+  
       dispatch(add({ name, number, id: nanoid() }));
     }
   };
@@ -41,9 +42,7 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
     }
   };
 
-  // const deleteContact = id => {
-  //   dispatch(remove(contactsBook.filter(el => el.id !== id)));
-  // };
+  
 
   return (
     <div
@@ -59,7 +58,7 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
       {isLoading&&<h2>Loading...</h2>}
       <Form addContact={addContact} />
       <Filter filterContact={filterContact} />
-      {/* <ShowContactList /> */}
+
       {error?error.message:<Contact  />}
     
     </div>

@@ -14,13 +14,10 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
-export const handleDeleteFulfielled = (state, action) => {
-  state.contactId = action.payload;
+export const handleDeleteFulfielled = (state, { payload }) => {
   state.contactsApi = state.contactsApi.filter(
-    el => el.id !== action.payload.data.id
+    el => el.id !== payload.data.id
   );
-  console.log('action', action);
-  console.log(state);
 };
 export const contactApiSlice = createSlice({
   name: 'contactApi',
@@ -35,11 +32,6 @@ export const contactApiSlice = createSlice({
       .addMatcher(action => {
         action.type.endsWith('/rejected');
       }, handleRejected);
-  },
-  reducers: {
-    deleteCont: (state, action) => {
-      console.log('action.payload', action.payload);
-    },
   },
 });
 
