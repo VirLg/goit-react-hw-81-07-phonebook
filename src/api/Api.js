@@ -17,7 +17,8 @@ export const ApiDelete = id => {
   return data;
 };
 
-export const ApiAdd = ({ id }) => {
+export const ApiAdd = add => {
+  console.log('add', add);
   const data = axios.post(`contacts`);
   if (!data) return new Error('some');
 

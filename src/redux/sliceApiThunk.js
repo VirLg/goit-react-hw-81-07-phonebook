@@ -5,6 +5,7 @@ import {
   contactsThunk,
 } from './thunk';
 import { initialState } from './initialState';
+import { useDispatch } from 'react-redux';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -25,8 +26,9 @@ export const handleDeleteFulfielled = (state, { payload }) => {
 };
 
 export const handleAddFulfielled = (state, action) => {
-  state.contactsApi = [{ name: '5' }, ...state.contactsApi];
-  console.log(action);
+  console.log('state', state);
+  // state.contactsApi = [state];
+  state.contactsApi = [state];
   // state.contactApi.contactsApi.push(action.payload);
 };
 export const contactApiSlice = createSlice({
@@ -44,10 +46,22 @@ export const contactApiSlice = createSlice({
         action.type.endsWith('/rejected');
       }, handleRejected);
   },
+  reducers: {
+    push: (state, action) => {
+      state.addContact = [action.payload];
+
+      // dispatch()
+    },
+    // console.log('push', action.payload);
+    // handleAddFulfielled(action.payload);
+
+    // handleAddFulfielled(action.payload);
+    //
+  },
 });
 
 export default contactApiSlice.reducer;
-
+export const { push } = contactApiSlice.actions;
 // ----------------------------------------------
 // extraReducers: {
 // [contactsThunk.pending]: state => {

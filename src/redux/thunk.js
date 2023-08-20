@@ -15,8 +15,9 @@ export const contactsDeleteThunk = createAsyncThunk(
 );
 export const contactsAddThunk = createAsyncThunk(
   'contactApi/addContact',
-  action => {
+  (action, { dispatch }) => {
     console.log('action', action);
-    return ApiAdd(action);
+    dispatch(contactsThunk());
+    return ApiAdd();
   }
 );

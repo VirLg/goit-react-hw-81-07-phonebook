@@ -8,11 +8,12 @@ import { filter } from '../redux/sliceFilter';
 import { myContactSelector } from 'redux/selector';
 import { useEffect } from 'react';
 import { contactsAddThunk, contactsThunk } from 'redux/thunk';
+import { handleAddFulfielled, push } from 'redux/sliceApiThunk';
 
 
 const App = function () {
   const { contactApi } = useSelector(myContactSelector);
-  console.log('contactApi', contactApi)
+ 
   const dispatch = useDispatch();
 const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
 
@@ -28,7 +29,7 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
         return alert('NoNoNo');
       }
   
-      dispatch(contactsAddThunk({ name, number, id: nanoid() }));
+      dispatch(push({ name, number, id: nanoid() }));
     }
   };
 
