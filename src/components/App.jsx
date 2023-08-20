@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filter } from '../redux/sliceFilter';
 import { myContactSelector } from 'redux/selector';
 import { useEffect } from 'react';
+import { push } from 'redux/sliceApiThunk';
+import { contactsThunk } from 'redux/thunk';
 // import { contactsAddThunk, contactsThunk } from 'redux/thunk';
 // import { handleAddFulfielled, push } from 'redux/sliceApiThunk';
 
