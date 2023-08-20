@@ -5,7 +5,7 @@ import {
   contactsThunk,
 } from './thunk';
 import { initialState } from './initialState';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 const handlePending = state => {
   state.isLoading = true;
