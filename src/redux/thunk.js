@@ -13,11 +13,14 @@ export const contactsDeleteThunk = createAsyncThunk(
     return ApiDelete(id);
   }
 );
+
 export const contactsAddThunk = createAsyncThunk(
   'contactApi/addContact',
-  (action, { dispatch }) => {
-    console.log('action', action);
-    dispatch(contactsThunk());
-    return ApiAdd();
+  (state, thunkAPI) => {
+    try {
+      return ApiAdd(state);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
 );

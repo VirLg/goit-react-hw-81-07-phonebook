@@ -3,15 +3,10 @@ import Contact from './Contact/Contact';
 import Filter from './Filter/Filter';
 import Form from './Form/Form';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { filter } from '../redux/sliceFilter';
 import { myContactSelector } from 'redux/selector';
 import { useEffect } from 'react';
-import { push } from 'redux/sliceApiThunk';
-import { contactsThunk } from 'redux/thunk';
-// import { contactsAddThunk, contactsThunk } from 'redux/thunk';
-// import { handleAddFulfielled, push } from 'redux/sliceApiThunk';
-
+import { contactsAddThunk, contactsThunk } from 'redux/thunk';
 
 const App = function () {
   const { contactApi } = useSelector(myContactSelector);
@@ -31,7 +26,7 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
         return alert('NoNoNo');
       }
   
-      dispatch(push({ name, number, id: nanoid() }));
+      dispatch(contactsAddThunk({ name, number, id: nanoid() }));
     }
   };
 
@@ -45,9 +40,6 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
       dispatch(filter([]));
     }
   };
-
-  
-
   return (
     <div
       style={{
@@ -62,7 +54,6 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
       {isLoading&&<h2>Loading...</h2>}
       <Form  addContact={addContact}/>
       <Filter filterContact={filterContact} />
-
       {error?error.message:<Contact  />}
     
     </div>

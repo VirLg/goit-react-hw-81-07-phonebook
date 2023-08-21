@@ -23,7 +23,7 @@ const Filter = ({ filterContact }) => {
   );
 };
 
-// Filter.propTypes = {};
+
 
 export default Filter;
 Filter.propTypes = {

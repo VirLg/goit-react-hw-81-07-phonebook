@@ -1,5 +1,3 @@
-// import { combineReducers } from 'redux';
-
 import { contactApiSlice } from './sliceApiThunk';
 import { sortSlice } from './sliceFilter';
 
