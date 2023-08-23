@@ -4,7 +4,7 @@ export const sortSlice = createSlice({
   name: 'contactFilter',
   initialState: [],
   reducers: {
-    filter: (state, action) => [action.payload],
+    filter: (_, action) => [action.payload],
   },
 });
 

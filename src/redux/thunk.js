@@ -9,8 +9,12 @@ export const contactsThunk = createAsyncThunk(
 );
 export const contactsDeleteThunk = createAsyncThunk(
   'contactApi/deleteContact',
-  id => {
-    return ApiDelete(id);
+  (id, thunkAPI) => {
+    try {
+      return ApiDelete(id);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
 );
 

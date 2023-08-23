@@ -4,11 +4,12 @@ import Filter from './Filter/Filter';
 import Form from './Form/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { filter } from '../redux/sliceFilter';
-import { myContactSelector } from 'redux/selector';
-import { useEffect } from 'react';
+import { myContactSelector, myFilterSelector } from 'redux/selector';
+import { useEffect, useState } from 'react';
 import { contactsAddThunk, contactsThunk } from 'redux/thunk';
 
 const App = function () {
+  const [filter, setFilter] = useState(null)
   const { contactApi } = useSelector(myContactSelector);
  
   const dispatch = useDispatch();
@@ -29,16 +30,18 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
       dispatch(contactsAddThunk({ name, number, id: nanoid() }));
     }
   };
+  const filterArrContact = useSelector(myFilterSelector)
 
   const filterContact = e => {
-    if (e.target.value) {
-      const filterSelector = contactsApi.filter(el =>
-        el.name.includes(e.target.value)
-      );
-      dispatch(filter(filterSelector));
-    } else {
-      dispatch(filter([]));
-    }
+    if (e.target.value) 
+      setFilter (filterArrContact.filter(el => 
+       
+         ( el.name.includes(e.target.value))
+  
+      )) 
+ 
+      
+    
   };
   return (
     <div
@@ -55,7 +58,8 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
       <Form  addContact={addContact}/>
       <Filter filterContact={filterContact} />
       {error?error.message:<Contact  />}
-    
+      {/* {visibleContact&& filterArrContact} */}
+      
     </div>
   );
 };
