@@ -5,16 +5,13 @@ import Form from './Form/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { filter } from '../redux/sliceFilter';
 import { myContactSelector, myFilterSelector } from 'redux/selector';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { contactsAddThunk, contactsThunk } from 'redux/thunk';
 
 const App = function () {
-  const [filter, setFilter] = useState(null)
   const { contactApi } = useSelector(myContactSelector);
- 
   const dispatch = useDispatch();
-const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
-
+  const { isLoading, error } = useSelector(state => state.contactApi)
   useEffect(() => { dispatch(contactsThunk()) }, [dispatch])
   
   const addContact = props => {
@@ -31,18 +28,12 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
     }
   };
   const filterArrContact = useSelector(myFilterSelector)
-
-  const filterContact = e => {
-    if (e.target.value) 
-      setFilter (filterArrContact.filter(el => 
-       
-         ( el.name.includes(e.target.value))
   
-      )) 
- 
-      
-    
-  };
+  const filterContact = e => {
+    if (e.target.value) {
+      dispatch(filter(e.target.value))
+    } else { dispatch(filter(''))}
+  }
   return (
     <div
       style={{
@@ -53,13 +44,12 @@ const {isLoading, error,contactsApi} = useSelector(state=>state.contactApi)
         color: '#010101',
       }}
     >
-  
       {isLoading&&<h2>Loading...</h2>}
       <Form  addContact={addContact}/>
       <Filter filterContact={filterContact} />
       {error?error.message:<Contact  />}
       {/* {visibleContact&& filterArrContact} */}
-      
+      <Contact filterArrContact={ filterArrContact} />
     </div>
   );
 };

@@ -1,32 +1,21 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import { ContactsDiv, Button } from './Contacts.styled';
-import { myContactSelector } from 'redux/selector';
+
 import { contactsDeleteThunk } from 'redux/thunk';
-const Contact = () => {
+const Contact = ({ filterArrContact}) => {
   const dispatch = useDispatch()
-  const visFilter = useSelector(myContactSelector).contactFilter[0];
-  const visContact = useSelector(myContactSelector).contactApi.contactsApi;
-
-  let show = [];
-
-  if (!visFilter || visFilter.length === 0) {
-    show = visContact;
-  } else {
-    show = visFilter; 
-  }
- 
-  return (show&&show.map(({ number, name, id }) => {
+  return (filterArrContact&&filterArrContact.map(({ number, name, id }) => {
     return (
       <ContactsDiv key={id}>
-        <h2
+        <h-
           style={{
             fontSize: '20px',
           }}
         >
           {name}
-        </h2>
+        </h->
         <h2
           style={{
             fontSize: '20px',
@@ -42,9 +31,7 @@ const Contact = () => {
     );
   }))
 };
-
 Contact.propTypes = {};
-
 export default Contact;
 Contact.propTypes = {
   deleteContact: PropTypes.func.isRequired,

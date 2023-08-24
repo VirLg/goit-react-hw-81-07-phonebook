@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const sortSlice = createSlice({
   name: 'contactFilter',
-  initialState: [],
+  initialState: '',
   reducers: {
-    filter: (_, action) => [action.payload],
+    filter: (_, action) => action.payload,
   },
 });
 
